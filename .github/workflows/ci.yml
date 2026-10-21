@@ -1,0 +1,45 @@
+name: Test dan Build SIAP TANJAK
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: siap-tanjak-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SIAP_SEED_EXAMPLE_DATA: '0'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Pasang dependensi build dan pengujian
+        run: npm ci --include=dev
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npm run package:release
+      - run: npm run verify:release
+      - name: Arsip Linux beserta dependensi runtime
+        run: |
+          tar -czf release/siap-tanjak-linux-x64.tar.gz -C release SIAP-TANJAK
+          cd release
+          sha256sum siap-tanjak-linux-x64.tar.gz > siap-tanjak-linux-x64.tar.gz.sha256
+      - uses: actions/upload-artifact@v7
+        with:
+          name: siap-tanjak-linux-x64-${{ github.sha }}
+          path: |
+            release/siap-tanjak-linux-x64.tar.gz
+            release/siap-tanjak-linux-x64.tar.gz.sha256
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0

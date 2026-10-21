@@ -1,0 +1,53 @@
+/* Songket Modern — public entry pages only. */
+.page-beranda,.page-login{--red:#801e36;--gold:#b28a3b;--ink:#27252b;--muted:#6d696a;--border:#e9e2d8;background:#faf8f3}
+:is(.page-beranda,.page-login) .mainheader{background:#fffdfa;border-bottom:1px solid #e9e2d8}
+:is(.page-beranda,.page-login) .headerinner{max-width:1440px;padding:16px 5%;min-height:88px}
+:is(.page-beranda,.page-login) .mainheader .logo img{width:245px;max-height:64px}
+:is(.page-beranda,.page-login) .primary{background:#801e36;border-color:#801e36;border-radius:9px;box-shadow:0 5px 15px #801e3610}
+:is(.page-beranda,.page-login) .primary:hover{background:#63152b}
+:is(.page-beranda,.page-login) .secondary{border-color:#a86e7b;color:#801e36;border-radius:9px;background:#fffdfa}
+:is(.page-beranda,.page-login) .songket{height:4px;background:repeating-linear-gradient(135deg,#b69554 0 2px,#f4ecd9 2px 7px,#801e36 7px 9px,#f4ecd9 9px 16px)}
+.page-beranda .homescreen{background:#faf8f3;position:relative;overflow:auto}
+.songket-home{max-width:1440px;margin:0 auto;padding:32px 5% 18px;position:relative;background:#faf8f3;width:100%}
+.songket-home:before,.page-login .loginright:after{content:'';position:absolute;pointer-events:none;width:90px;height:90px;right:0;bottom:0;opacity:.2;background:repeating-linear-gradient(45deg,transparent 0 9px,#b28a3b 9px 11px,transparent 11px 20px),repeating-linear-gradient(-45deg,transparent 0 9px,#b28a3b 9px 11px,transparent 11px 20px);clip-path:polygon(100% 0,100% 100%,0 100%)}
+.songket-hero{display:grid;grid-template-columns:1fr 1.06fr;gap:42px;align-items:center;min-height:360px}
+.songket-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.4px;color:#96702f;display:block;margin-bottom:20px;line-height:1.5}
+.page-beranda .songket-copy h1{font-size:clamp(32px,3.5vw,54px);font-weight:750;line-height:1.12;letter-spacing:-1.8px;margin:0 0 20px;color:#25242b}
+.songket-copy h1 em{font-style:normal;color:#801e36}
+.page-beranda .songket-copy p{font-size:15px;line-height:1.65;max-width:510px;margin:0 0 24px}
+.songket-title-break{display:none}.songket-actions{display:flex;flex-wrap:wrap;gap:12px}.songket-actions button{min-height:47px;padding:12px 20px}
+.songket-trust{display:flex;align-items:center;gap:7px;color:#817661;font-size:12px;margin-top:23px}
+.songket-photo{height:clamp(280px,32vw,440px);position:relative;border-radius:100px 15px 15px 15px;overflow:hidden;border-bottom:4px solid #bd9a58;background:#e9ddca}
+.songket-photo>img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.songket-photo:after{content:'';position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#361a2299)}
+.songket-photo-caption{position:absolute;z-index:1;bottom:23px;left:26px;color:#fff;display:grid;gap:5px}.songket-photo-caption span{font-size:10px;letter-spacing:2px;color:#f5dfb3}.songket-photo-caption strong{font-size:24px;font-weight:600}
+.songket-statistics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:28px 0 20px}.songket-statistics article{display:flex;gap:16px;align-items:center;padding:20px;background:#fff;border:1px solid #ede7dc;border-radius:12px;box-shadow:0 7px 24px #49361e05}.songket-statistics article>svg{color:#b28a3b}.songket-statistics article div{display:grid;gap:7px}.songket-statistics span{font-size:12px;color:#706a67}.songket-statistics strong{font-size:26px;line-height:1.1;font-weight:700}
+.songket-home-foot{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid #e9dfcf;padding-top:16px}.songket-home-foot>img{width:205px;height:53px;object-fit:contain}.page-beranda .songket-home-foot p{font-size:15px;color:#5c4a3d;margin:0;text-align:right;line-height:1.5}.songket-home-foot small{display:block;font-size:11px;margin-top:4px;color:#8b8277;line-height:1.5}
+.page-beranda .homescreen>.publicmain{padding-bottom:8px}.page-beranda .snapnext{color:#801e36;font-size:12px}.page-beranda .carouselarrow{background:#801e36cc;width:34px;height:46px}.page-beranda .carouselnav{pointer-events:none}.page-beranda .carouselnav button{pointer-events:auto}
+.page-login .loginpage{max-width:none;background:#faf8f3;min-height:calc(100dvh - 160px);display:grid;grid-template-columns:1fr 1fr}
+.page-login .loginleft{position:relative;background:linear-gradient(100deg,#491322d9,#561e2866),url('/visual/login-ampera.jpg') center/cover no-repeat;padding:clamp(35px,5vw,75px);display:flex;flex-direction:column;justify-content:center;color:#fff}
+.page-login .loginleft h1{font-size:clamp(30px,3.1vw,47px);line-height:1.2;letter-spacing:-1px;margin:23px 0}.page-login .loginleft h1 em{color:#edd39b;font-style:normal}.page-login .loginleft p{color:#f0e4df;line-height:1.6;font-size:15px}.page-login .loginleft .eyebrow{color:#efd59d;font-size:11px;letter-spacing:2px}.page-login .loginroles{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:0 18px}.page-login .loginroles>div{padding:11px 0;border-bottom:1px solid #ffffff26;font-size:12px}.page-login .loginroles span{color:#e6c78a}
+.page-login .loginright{padding:28px clamp(22px,4vw,65px);position:relative;display:flex;align-items:center;justify-content:center;background:#faf8f3;overflow:visible}.page-login .loginbox{width:100%;max-width:480px;background:#fff;padding:26px 30px;border:1px solid #ece4d8;border-radius:14px;box-shadow:0 12px 45px #492c1810;margin:0}.page-login .loginbox h2{font-size:27px;line-height:1.25;letter-spacing:-.6px;margin:12px 0}.page-login .loginbox>p{font-size:13px;line-height:1.5}.page-login .loginbox .breadcrumbs{font-size:11px;line-height:1.4;margin-bottom:18px}.page-login .loginbox input,.page-login .loginbox select{border-color:#e4dfda;border-radius:7px;font-size:14px;padding:10px 12px}.page-login .loginbox label{font-size:13px}.page-login .loginbox .primary{width:100%;min-height:44px}.page-login .loginbox .eyebrow{font-size:10px}.page-login footer{background:#faf8f3;border-top:1px solid #e9dfcf}.page-login .registrationpage{align-items:stretch}.page-login .registrationpage .loginright{align-items:flex-start}
+@media(min-width:1500px){.songket-home{padding-top:48px}.songket-hero{min-height:430px}.songket-statistics{margin-top:34px}}
+@media(max-width:800px){.songket-home{padding:28px 24px 20px}.songket-hero{grid-template-columns:1fr;gap:24px}.songket-photo{height:245px;border-top-left-radius:65px;grid-row:2}.page-beranda .songket-copy h1{font-size:35px;letter-spacing:-1px}.songket-statistics{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px}.songket-statistics article{padding:15px;gap:10px}.songket-statistics span{font-size:11px}.songket-home-foot{align-items:flex-start;flex-direction:column;gap:12px}.page-beranda .songket-home-foot p{text-align:left;font-size:14px}.page-login .loginpage{grid-template-columns:1fr}.page-login .loginleft{padding:30px 25px;min-height:240px}.page-login .loginleft h1{font-size:30px;margin:14px 0}.page-login .loginleft p{margin-bottom:0}.page-login .loginroles{display:none}.page-login .loginright{padding:24px 18px}.page-login .loginbox{max-width:520px;padding:23px}.songket-eyebrow{letter-spacing:1.5px}.songket-actions button{font-size:13px}.page-beranda .homescreen{height:auto!important;min-height:calc(100dvh - var(--portal-header,100px))}.page-beranda .homesnap{scroll-snap-type:y proximity}}
+@media(prefers-reduced-motion:reduce){.songket-home *{scroll-behavior:auto;transition:none}}
+
+@media(min-width:801px) and (max-height:850px){.songket-home{padding-top:22px;padding-bottom:12px}.songket-photo{height:clamp(280px,calc(100dvh - 340px),410px)}.songket-hero{gap:34px;min-height:330px}.page-beranda .songket-copy h1{font-size:clamp(34px,3.2vw,46px);margin-bottom:16px}.page-beranda .songket-copy p{font-size:14px;margin-bottom:18px}.songket-eyebrow{margin-bottom:15px}.songket-statistics{margin-top:20px;margin-bottom:14px}.songket-statistics article{padding:16px}.songket-home-foot{padding-top:10px}.songket-trust{margin-top:17px}}
+
+/* Keep long registration forms inside a scrollable pane of the viewport shell. */
+.page-login .loginpage{min-height:0;grid-template-rows:minmax(0,1fr);overflow:hidden}
+.page-login .loginright{min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scroll-padding-block:24px;align-items:safe center}
+.page-login .loginbox{flex-shrink:0;max-height:none}
+.page-login .loginright{display:block;padding-block:16px;scroll-padding-block:16px}
+.page-login .loginbox{margin-inline:auto;padding:18px 24px}
+.page-login .loginbox .breadcrumbs{margin-bottom:10px}
+.page-login .loginbox h2{margin:8px 0}
+@media(max-height:760px){.page-login .loginright{padding-block:10px}.page-login .loginbox{padding:14px 22px}.page-login .loginbox h2{font-size:24px}.page-login .loginbox>p{margin:7px 0 10px}.page-login .loginbox .field{margin-bottom:6px}.page-login .loginbox .loginlinks{margin-top:9px;gap:7px}}
+@media(max-width:800px){.page-login .loginright{padding:12px 16px 72px}.page-login .loginbox{padding:18px}.page-login .loginbox h2{font-size:24px}}
+.page-login .registrationpage .loginright{align-items:flex-start;padding-bottom:90px}
+@media(max-width:800px){.page-login .loginleft{display:none}.page-login .loginpage{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr)}.page-login .loginright{align-items:flex-start;-webkit-overflow-scrolling:touch}}
+
+/* Separate presentation sizes for the home introduction and the sections below. */
+.page-beranda #sambutan .songket-home{zoom:1.2}
+.page-beranda .aboutsnapinner{zoom:1.1;width:calc(100% / 1.1)}
+.page-beranda .aboutcontent>.aboutslide{height:calc((100dvh - var(--portal-header,100px)) / 1.1)!important;max-height:calc((100dvh - var(--portal-header,100px)) / 1.1)!important;justify-content:flex-start}

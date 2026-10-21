@@ -1,0 +1,2 @@
+'use client';
+export default function ScopeSelect({label,options,value,onChange,lockedValue=''}:{label:string;options:string[];value:string;onChange:(value:string)=>void;lockedValue?:string}){return <select aria-label={label} value={lockedValue||value} onChange={e=>{if(!lockedValue||e.target.value===lockedValue)onChange(e.target.value);}}><option value="" disabled={!!lockedValue}>{label}</option>{options.map(option=><option key={option} value={option} disabled={!!lockedValue&&option!==lockedValue}>{option}</option>)}</select>;}

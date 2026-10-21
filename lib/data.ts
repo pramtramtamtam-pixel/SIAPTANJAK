@@ -1,0 +1,22 @@
+export const roles=['Administrator','Bappeda Provinsi','Bappeda Kab/Kota','Perangkat Daerah','Perusahaan'];
+export const programs=['Mewujudkan New Palembang Port Tanjung Carat','Melanjutkan Program Berkat (Berobat Gratis Ber-KTP)','Gerakan Sumsel Mandiri Pangan','Pendidikan yang Berkeadilan','Infrastruktur Tuntas Merata','Sumsel Interkoneksi','100.000 Sultan Muda (Wirausaha)','Sumsel Religius, Toleransi dan Berbudaya','Sumsel Wonderful 2030 (Pariwisata)','Sumsel Berintegritas dan Melayani','Kesejahteraan dan Kesehatan Perempuan dan Anak','Revitalisasi Pasar Tradisional'];
+export const statuses=['Draft','Menunggu Verifikasi Bappeda Provinsi','Menunggu Pembahasan POKJA','Disetujui POKJA Provinsi','Dalam Pelaksanaan','Selesai','Dibatalkan'];
+export const wilayah=['Palembang','Prabumulih','Pagar Alam','Lubuklinggau','Banyuasin','Musi Banyuasin','Muara Enim','Lahat','Empat Lawang','Musi Rawas','Musi Rawas Utara','Ogan Ilir','Ogan Komering Ilir','Ogan Komering Ulu','Ogan Komering Ulu Timur','Ogan Komering Ulu Selatan','Penukal Abab Lematang Ilir'];
+export const bidang=['Infrastruktur','Sosial dan Pengentasan Kemiskinan','Pengendalian Inflasi','Usaha Ekonomi Kerakyatan','Pendidikan dan Kesehatan','Lingkungan Hidup dan Kedaruratan Bencana'];
+export const companies=[['PT Bukit Asam Tbk','BUMN'],['Bank Sumsel Babel','BUMD'],['PT Pusri','BUMN'],['PT Pertamina','BUMN'],['PT PLN','BUMN'],['PT Bank Mandiri','BUMN'],['PT Sinar Mas Agro Resources and Technology Tbk','Swasta']];
+const examples=[
+['Penyediaan sarana air bersih Desa Tanjung Agung','Infrastruktur','Muara Enim',1250000000,'Dalam Pelaksanaan',68,'co-0',-3.665,103.779,320,'100 sambungan air bersih',5],
+['Peningkatan layanan gizi ibu dan balita','Pendidikan dan Kesehatan','Palembang',480000000,'Disetujui POKJA Provinsi',0,null,-2.976,104.775,240,'240 paket layanan gizi',11],
+['Pengembangan sentra tenun songket','Usaha Ekonomi Kerakyatan','Ogan Ilir',650000000,'Dalam Pelaksanaan',45,'co-2',-3.237,104.653,80,'80 pelaku usaha terlatih',7],
+['Rehabilitasi ruang belajar sekolah dasar','Infrastruktur','Banyuasin',950000000,'Menunggu Verifikasi Bappeda Provinsi',0,null,-2.887,104.381,420,'6 ruang belajar layak',4],
+['Pemulihan ekosistem mangrove pesisir','Lingkungan Hidup dan Kedaruratan Bencana','Ogan Komering Ilir',820000000,'Selesai',100,'co-3',-3.383,105.178,150,'10 hektare mangrove',5],
+['Bantuan usaha keluarga rentan','Sosial dan Pengentasan Kemiskinan','Musi Banyuasin',360000000,'Menunggu Verifikasi Bappeda Provinsi',0,null,-2.882,103.854,120,'120 paket modal usaha',7],
+['Pembangunan bank sampah masyarakat','Lingkungan Hidup dan Kedaruratan Bencana','Prabumulih',300000000,'Disetujui POKJA Provinsi',0,null,-3.432,104.235,180,'3 unit bank sampah',5],
+['Pelatihan pertanian dan distribusi pangan','Pengendalian Inflasi','Ogan Komering Ulu Timur',540000000,'Selesai',100,'co-1',-4.125,104.618,200,'200 petani terlatih',3],
+['Penerangan jalan lingkungan permukiman','Infrastruktur','Lubuklinggau',750000000,'Dalam Pelaksanaan',32,'co-4',-3.296,102.861,450,'50 titik lampu jalan',6],
+['Beasiswa pendidikan keluarga prasejahtera','Pendidikan dan Kesehatan','Lahat',420000000,0,null,-3.786,103.542,100,'100 penerima beasiswa',4],
+['Pengembangan kebun pangan komunitas','Pengendalian Inflasi','Pagar Alam',280000000,'Draft',0,null,-4.026,103.257,70,'7 kebun pangan',3],
+['Peningkatan sanitasi permukiman','Infrastruktur','Musi Rawas',1100000000,'Disetujui POKJA Provinsi',0,null,-3.151,103.064,260,'65 sanitasi rumah tangga',5]];
+export const seedUsulan=examples.map((a,i)=>({id:`USL-2026-${String(i+1).padStart(3,'0')}`,title:a[0],bidang:a[1],wilayah:a[2],year:2026,budget:a[3],status:a[4],progress:a[5],company_id:a[6],owner_id:null,created:'2026-10-01T08:00:00.000Z',payload:{demo:true,lat:a[7],lng:a[8],beneficiaries:a[9],output:a[10],background:'Data contoh untuk memperagakan alur perencanaan dan pelaksanaan TJSL. Bukan laporan realisasi resmi.',kecamatan:'Kecamatan contoh',desa:'Desa contoh',sdgs:['6','11'],program:[`program-${a[11]}`],funding:'Tidak ada sumber pendanaan lain pada data contoh.',start:'2026-01-01',end:'2026-12-31',coordination:'Rapat POKJA (contoh)',rkpd:'Prioritas pembangunan daerah (contoh)'}}));
+export const money=(n:number)=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(n);
+export const compact=(n:number)=>n>=1e9?`Rp ${(n/1e9).toLocaleString('id-ID',{maximumFractionDigits:2})} M`:money(n);

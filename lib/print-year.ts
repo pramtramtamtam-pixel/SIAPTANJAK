@@ -1,0 +1,1 @@
+export function printYear(planningYear:any,selectedYear?:any){return selectedYear!==undefined&&selectedYear!==null&&String(selectedYear)!==''?String(selectedYear):String(Number(planningYear)+1);}

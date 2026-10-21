@@ -1,0 +1,1 @@
+ALTER TABLE user_profiles ADD COLUMN pic_name TEXT NOT NULL DEFAULT '';

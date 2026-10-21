@@ -1,0 +1,11 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),ts=require('typescript');
+function harness(){let state=0;const values=[],refs=[],timers=new Map();const exports={};
+ const react={useRef:v=>{const ref={current:v};refs.push(ref);return ref;},useState:v=>{const index=state++;values[index]=v;return [v,next=>values[index]=typeof next==='function'?next(values[index]):next];},useEffect:()=>{}};
+ vm.runInNewContext(ts.transpileModule(fs.readFileSync(path.join(__dirname,'../app/DraggableAssistant.tsx'),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX}}).outputText,{exports,require:n=>n==='react'?react:{jsx:(type,props)=>({type,props})},setTimeout:fn=>{timers.set(1,fn);return 1;},clearTimeout:id=>timers.delete(id),window:{innerWidth:1000,innerHeight:800},Math});
+ const root=exports.default({children:'help'});refs[0].current={getBoundingClientRect:()=>({width:120,height:60})};let captured=false;const target={closest:()=>target,setPointerCapture:()=>captured=true,hasPointerCapture:()=>captured,releasePointerCapture:()=>captured=false};
+ const event=(x=500,y=500)=>({target,button:0,isPrimary:true,pointerId:7,clientX:x,clientY:y,preventDefault(){this.prevented=true;},stopPropagation(){this.stopped=true;}});
+ return {props:root.props,values,event,hold:()=>{for(const fn of timers.values())fn();timers.clear();}};
+}
+test('Short click remains a normal help click',()=>{const h=harness();h.props.onPointerDownCapture(h.event());h.props.onPointerUpCapture();const click=h.event();h.props.onClickCapture(click);assert.ok(!click.prevented);assert.equal(h.values[0].right,18);});
+test('Hold activates dragging and suppresses opening help after release',()=>{const h=harness();h.props.onPointerDownCapture(h.event());h.hold();h.props.onPointerMoveCapture(h.event(400,400));assert.equal(h.values[0].right,118);assert.equal(h.values[0].bottom,115);h.props.onPointerUpCapture();const click=h.event();h.props.onClickCapture(click);assert.equal(click.stopped,true);assert.equal(h.values[1],false);});
+test('Moving before the hold threshold cancels dragging',()=>{const h=harness();h.props.onPointerDownCapture(h.event());h.props.onPointerMoveCapture(h.event(450,450));h.hold();assert.equal(h.values[1],false);assert.equal(h.values[0].right,18);});

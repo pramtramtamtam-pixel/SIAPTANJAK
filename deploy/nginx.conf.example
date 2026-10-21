@@ -1,0 +1,25 @@
+# Ganti domain dan lokasi sertifikat dengan konfigurasi HTTPS server Anda.
+server {
+    listen 80;
+    server_name tjsl.example.go.id;
+    return 301 https://$host$request_uri;
+}
+server {
+    listen 443 ssl;
+    server_name tjsl.example.go.id;
+    ssl_certificate /etc/letsencrypt/live/tjsl.example.go.id/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/tjsl.example.go.id/privkey.pem;
+    client_max_body_size 26m;
+    location / {
+        proxy_pass http://127.0.0.1:3101;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header CF-Connecting-IP $remote_addr;
+        proxy_set_header OAI-Authenticated-User-Id "";
+        proxy_set_header OAI-Authenticated-User-Email "";
+        proxy_read_timeout 120s;
+    }
+}

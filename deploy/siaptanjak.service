@@ -1,0 +1,20 @@
+[Unit]
+Description=SIAP TANJAK
+After=network-online.target
+Wants=network-online.target
+[Service]
+User=siap-tanjak
+Group=siap-tanjak
+WorkingDirectory=/opt/siaptanjak/current
+EnvironmentFile=/etc/siaptanjak/app.env
+ExecStart=/usr/bin/node /opt/siaptanjak/current/dist/standalone/server.js
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/siaptanjak
+UMask=0077
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,1 @@
+export default function OriginBadge({origin}:{origin?:string}){return origin==='Provinsi'||origin==='Kab/Kota'?<span className={'origin-badge '+(origin==='Provinsi'?'province':'district')}>Usulan {origin}</span>:null;}

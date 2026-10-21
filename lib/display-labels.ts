@@ -1,0 +1,1 @@
+export function statusLabel(value:string){if(value==='Menunggu Pembahasan POKJA')return 'Disetujui dan Menunggu Keputusan POKJA';if(value?.startsWith('Ditolak')||value==='DITOLAK'||value==='Tidak disetujui POKJA Provinsi')return 'Ditolak';return value;}

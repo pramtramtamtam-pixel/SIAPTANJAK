@@ -1,0 +1,11 @@
+import {env} from 'cloudflare:workers';
+import {one,run,assert,uid,now,jsonBody} from './server';
+export async function registrationBody(req:Request){
+ if(!req.headers.get('content-type')?.includes('multipart/form-data'))return {body:await jsonBody(req),logo:null};
+ assert(Number(req.headers.get('content-length')||0)<=2300000,'Logo maksimal 2 MB',413);const form=await req.formData();const raw=form.get('payload');assert(typeof raw==='string'&&raw.length<200000,'Data registrasi tidak valid');let body;try{body=JSON.parse(raw);}catch{assert(false,'Data registrasi tidak valid');}assert(body&&typeof body==='object'&&!Array.isArray(body),'Data registrasi tidak valid');return {body,logo:form.get('logo')};
+}
+export async function storeCompanyLogo(file:any,ownerId:string){
+ if(!file||typeof file==='string'||!file.size)return null;assert(file.size<=2*1024*1024,'Logo maksimal 2 MB',413);assert(env.BUCKET,'Penyimpanan logo belum tersedia',503);const bytes=new Uint8Array(await file.arrayBuffer());
+ const png=bytes.length>24&&[137,80,78,71,13,10,26,10].every((x,i)=>bytes[i]===x),jpg=bytes.length>3&&bytes[0]===255&&bytes[1]===216&&bytes[2]===255,webp=bytes.length>12&&String.fromCharCode(...bytes.slice(0,4))==='RIFF'&&String.fromCharCode(...bytes.slice(8,12))==='WEBP';assert(png||jpg||webp,'Logo harus berupa PNG, JPG atau WebP.');const mime=png?'image/png':jpg?'image/jpeg':'image/webp',id=uid();await env.BUCKET.put('company-logos/'+id,bytes,{httpMetadata:{contentType:mime}});return {id,ownerId,mime,name:String(file.name).slice(0,180),size:file.size};
+}
+export async function handleCompanyLogo(req:Request,u:any,id:string){assert(req.method==='GET','Metode tidak diizinkan',405);const row=await one('SELECT l.*,c.status,u.active,u.deleted_at FROM company_logos l JOIN perusahaan c ON c.user_id=l.owner_id JOIN users u ON u.id=l.owner_id WHERE l.id=?',id);assert(row,'Logo tidak ditemukan',404);assert(row.status==='Disetujui'&&row.active&&!row.deleted_at||u&&(u.id===row.owner_id||u.role==='Administrator'),'Logo belum diterbitkan',403);const object=await env.BUCKET?.get('company-logos/'+id);assert(object,'Logo tidak tersedia',404);return new Response(object.body,{headers:{'Content-Type':row.mime,'X-Content-Type-Options':'nosniff','Cache-Control':'private, no-store','Content-Security-Policy':"default-src 'none'; sandbox"}});}

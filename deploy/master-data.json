@@ -1,0 +1,80 @@
+{
+  "bidang": [
+    "Infrastruktur",
+    "Sosial dan Pengentasan Kemiskinan",
+    "Pengendalian Inflasi",
+    "Usaha Ekonomi Kerakyatan",
+    "Pendidikan dan Kesehatan",
+    "Lingkungan Hidup dan Kedaruratan Bencana"
+  ],
+  "wilayah": [
+    "Palembang",
+    "Prabumulih",
+    "Pagar Alam",
+    "Lubuklinggau",
+    "Banyuasin",
+    "Musi Banyuasin",
+    "Muara Enim",
+    "Lahat",
+    "Empat Lawang",
+    "Musi Rawas",
+    "Musi Rawas Utara",
+    "Ogan Ilir",
+    "Ogan Komering Ilir",
+    "Ogan Komering Ulu",
+    "Ogan Komering Ulu Timur",
+    "Ogan Komering Ulu Selatan",
+    "Penukal Abab Lematang Ilir"
+  ],
+  "program": [
+    "Mewujudkan New Palembang Port Tanjung Carat",
+    "Melanjutkan Program Berkat (Berobat Gratis Ber-KTP)",
+    "Gerakan Sumsel Mandiri Pangan",
+    "Pendidikan yang Berkeadilan",
+    "Infrastruktur Tuntas Merata",
+    "Sumsel Interkoneksi",
+    "100.000 Sultan Muda (Wirausaha)",
+    "Sumsel Religius, Toleransi dan Berbudaya",
+    "Sumsel Wonderful 2030 (Pariwisata)",
+    "Sumsel Berintegritas dan Melayani",
+    "Kesejahteraan dan Kesehatan Perempuan dan Anak",
+    "Revitalisasi Pasar Tradisional"
+  ],
+  "tahun": [
+    "2027",
+    "2028",
+    "2029"
+  ],
+  "sdgs": [
+    "SDGs 1",
+    "SDGs 2",
+    "SDGs 3",
+    "SDGs 4",
+    "SDGs 5",
+    "SDGs 6",
+    "SDGs 7",
+    "SDGs 8",
+    "SDGs 9",
+    "SDGs 10",
+    "SDGs 11",
+    "SDGs 12",
+    "SDGs 13",
+    "SDGs 14",
+    "SDGs 15",
+    "SDGs 16",
+    "SDGs 17"
+  ],
+  "kategori": [
+    "Sarana dan prasarana",
+    "Pemberdayaan masyarakat",
+    "Bantuan sosial"
+  ],
+  "opd": [
+    "Bappeda Provinsi Sumatera Selatan",
+    "Dinas Pendidikan",
+    "Dinas Kesehatan",
+    "Dinas Sosial",
+    "Dinas Perumahan dan Kawasan Permukiman",
+    "Dinas Lingkungan Hidup"
+  ]
+}

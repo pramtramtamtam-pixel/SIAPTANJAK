@@ -1,0 +1,8 @@
+import {statusLabel} from './display-labels';
+export function phaseExcelData(result:any,title:string,year:string|number,phase:string){
+ const proposals=result.proposals||[];
+ const details=proposals.map((r:any,i:number)=>({'No.':i+1,'ID usulan':String(r.id),'Nama kegiatan':String(r.title||''),'Asal usulan':r.origin||r.payload?.origin||'Kab/Kota','POKJA':r.bidang||'','Kab/Kota':r.wilayah||'','Tahun':Number(r.year),'Estimasi biaya (Rp)':Number(r.budget||0),'Status':statusLabel(r.status),'Status proses':r.status,'Perusahaan':r.company_name||'','Realisasi fisik (%)':Number(r.progress||0),'Data contoh':r.payload?.demo?'Ya':'Tidak'}));
+ const metadata=[['Judul',title],['Tahun',String(year)],['Tahun Perencanaan',String(result.planningYear??Number(year)-1)],['Tahapan',phase==='all'?'Data terkini sesuai filter halaman':'Tahap '+(Number(phase)+1)+' · '+result.name],['Jumlah kegiatan',proposals.length],['Waktu data (WIB)',new Date(result.generated).toLocaleString('id-ID',{timeZone:'Asia/Jakarta'})],['Sumber jadwal',result.scheduleSource==='archive'?'Arsip jadwal saat proses':result.schedule?'Pengaturan jadwal saat cetak':'Tidak tersedia'],['Jadwal mulai',result.schedule?.opens||''],['Jadwal selesai',result.schedule?.continuous?'Pelaporan berkelanjutan':result.schedule?.closes||''],['Keterangan',result.note||''],...(result.filters||[]).map(([k,v]:any)=>['Filter '+k,String(v)])];
+ const counts=new Map<string,number>();for(const r of proposals){const status=statusLabel(r.status);counts.set(status,(counts.get(status)||0)+1);}
+ return {details,metadata,statuses:Array.from(counts,([status,count])=>({Status:status,'Jumlah kegiatan':count}))};
+}

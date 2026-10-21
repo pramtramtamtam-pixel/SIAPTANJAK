@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
+const release=path.join(root,'release','SIAP-TANJAK');
+if(path.dirname(release)!==path.join(root,'release'))throw Error('Direktori rilis tidak valid');
+const built=path.join(root,'dist','standalone');
+for(const name of ['server.js','dist','node_modules','public'])if(!fs.existsSync(path.join(built,name)))throw Error('Build standalone belum lengkap: '+name+'. Jalankan npm run build.');
+fs.rmSync(release,{recursive:true,force:true});
+fs.mkdirSync(release,{recursive:true});
+fs.cpSync(built,path.join(release,'dist','standalone'),{recursive:true,dereference:true});
+for(const name of ['drizzle','public','deploy'])fs.cpSync(path.join(root,name),path.join(release,name),{recursive:true,dereference:true});
+fs.mkdirSync(path.join(release,'node_modules'),{recursive:true});
+fs.cpSync(path.join(root,'node_modules','bcryptjs'),path.join(release,'node_modules','bcryptjs'),{recursive:true,dereference:true});
+fs.copyFileSync(path.join(root,'PANDUAN-DEPLOY.md'),path.join(release,'PANDUAN-DEPLOY.md'));
+fs.writeFileSync(path.join(release,'package.json'),JSON.stringify({name:'siap-tanjak-runtime',private:true,type:'module',engines:{node:'>=22.13.0'},scripts:{start:'node dist/standalone/server.js'}},null,2)+'\n');
+fs.writeFileSync(path.join(release,'BUILD-INFO.json'),JSON.stringify({created:new Date().toISOString(),platform:process.platform,arch:process.arch,node:process.version,commit:process.env.GITHUB_SHA||null},null,2)+'\n');
+console.log('Runtime lengkap dibuat di release/SIAP-TANJAK ('+process.platform+'/'+process.arch+').');

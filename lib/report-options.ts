@@ -1,0 +1,8 @@
+export const reportDocumentCategories=['Laporan','Dokumen Cetak','Dokumentasi'];
+export const outputUnits=['Unit','Buah','Orang','Kegiatan','Paket','KK','Ha','Meter'];
+export function calendarYearWIB(clock:number=Date.now()){return Number(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Jakarta',year:'numeric'}).format(new Date(clock)));}
+export function reportYears(planningYear:number){const end=Number(planningYear);return Number.isInteger(end)&&end>=2024?Array.from({length:end-2023},(_,i)=>end-i):[];}
+export function standaloneReportYears(planningYear:number,clock:number=Date.now(),postOpen=false){return reportYears(postOpen?Number(planningYear):Math.min(Number(planningYear),calendarYearWIB(clock)));}
+export function isStandaloneReportYear(year:any,planningYear:number,clock:number=Date.now(),postOpen=false){return Number.isInteger(Number(year))&&standaloneReportYears(planningYear,clock,postOpen).includes(Number(year));}
+export function reportOutput(p:any){return p.outputType==='satuan'?`${Number(p.outputQuantity||0).toLocaleString('id-ID',{maximumFractionDigits:6})} ${p.output}${p.outputNotes?' · '+p.outputNotes:''}`:p.output||'Belum dicatat';}
+export function orderReports(rows:any[],order:string){return [...rows].sort((a,b)=>order==='newest'?String(b.created).localeCompare(String(a.created))||String(b.id).localeCompare(String(a.id)):(order==='output-desc'?-1:1)*(String(a.payload.output||'').localeCompare(String(b.payload.output||''),'id',{numeric:true,sensitivity:'base'})||Number(a.payload.outputQuantity||0)-Number(b.payload.outputQuantity||0)||String(a.title).localeCompare(String(b.title),'id')));}

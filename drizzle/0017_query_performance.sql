@@ -1,0 +1,11 @@
+CREATE INDEX IF NOT EXISTS idx_usulan_year_status_created ON usulan(year,status,created DESC,id DESC);
+CREATE INDEX IF NOT EXISTS idx_usulan_company_year_status ON usulan(company_id,year,status);
+CREATE INDEX IF NOT EXISTS idx_records_owner_type_created ON records(owner_id,type,created DESC,id DESC);
+CREATE INDEX IF NOT EXISTS idx_records_proposal_type_created ON records(usulan_id,type,created DESC,id DESC);
+CREATE INDEX IF NOT EXISTS idx_audit_created_page ON audit_log(created DESC,id DESC);
+CREATE INDEX IF NOT EXISTS idx_audit_user_action_created ON audit_log(user_id,action,created DESC);
+CREATE INDEX IF NOT EXISTS idx_documents_proposal_created ON dokumen(usulan_id,created DESC);
+CREATE INDEX IF NOT EXISTS idx_reviews_proposal_created ON review_usulan(usulan_id,created DESC);
+CREATE INDEX IF NOT EXISTS idx_decisions_proposal_company ON keputusan_perusahaan(usulan_id,company_id,decision);
+CREATE INDEX IF NOT EXISTS idx_notifications_user_created ON notifications(user_id,created DESC);
+CREATE INDEX IF NOT EXISTS idx_outbox_waiting_created ON email_outbox(status,created,id);
